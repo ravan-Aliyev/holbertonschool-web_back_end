@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Simple pagination"""
 import csv
-import math
-from typing import List
+from typing import List, Tuple
 
 
 class Server:
@@ -39,6 +38,6 @@ class Server:
             return []
     
 
-def index_range(page, page_size):
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """Find page size"""
     return (page_size * (page - 1), page_size * page)
