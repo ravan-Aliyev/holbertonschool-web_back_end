@@ -10,6 +10,7 @@ if __name__ == "__main__":
     length = logs_collection.count_documents({})
     arr = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
+
     print("{0} logs".format(length))
     print("Methods:")
     for method in arr:
