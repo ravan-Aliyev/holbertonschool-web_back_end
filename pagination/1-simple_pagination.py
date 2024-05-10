@@ -36,7 +36,7 @@ class Server:
             return self.dataset()[s:e]
         except IndexError:
             return []
-    
+
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """Find page size"""
