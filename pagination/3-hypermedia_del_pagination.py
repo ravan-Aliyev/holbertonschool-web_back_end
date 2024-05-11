@@ -5,7 +5,7 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import List
+from typing import List, Dict
 
 
 class Server:
@@ -28,7 +28,7 @@ class Server:
 
         return self.__dataset
 
-    def indexed_dataset(self) -> dict[int, List]:
+    def indexed_dataset(self) -> Dict[int, List]:
         """Dataset indexed by sorting position, starting at 0
         """
         if self.__indexed_dataset is None:
@@ -39,29 +39,18 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> dict:
-        """
-        Returning dict
-        """
-        dataset_len = len(self.dataset())
-        assert 0 <= index < dataset_len
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """Getting hyper index"""
+        assert index <= len(self.indexed_dataset())
+        data = list(self.indexed_dataset().values())[index:index + page_size]
+        next_index = index + page_size
 
-        indexed_dataset = self.indexed_dataset()
-        page_dict = {}
+        if index not in self.indexed_dataset().keys():
+            next_index += 1
 
-        i = index
-        while (len(page_dict) < page_size and i < dataset_len):
-            if i in indexed_dataset:
-                page_dict[i] = indexed_dataset[i]
-            i += 1
-
-        page = list(page_dict.values())
-        vals = len(page)
-        keys = page_dict.keys()
-
+        # print(data)
         return {
-                'index': index,
-                'next_index': max(keys) + 1,
-                'page_size': vals,
-                'data': page
+            'index': index,
+            'data': data,
+            'next_index': next_index
         }
