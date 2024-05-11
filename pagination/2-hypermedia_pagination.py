@@ -39,17 +39,20 @@ class Server:
             return []
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
-        data = self.get_page(page, page_size)
-        pagination_dict = {
-            'page_size': len(data),
-            'page': page,
-            'data': self.get_page(page, page_size),
-            'next_page': page + 1 if (page + 1) <= page_size else None,
-            'prev_page': page - 1 if (page - 1) > 0 else None,
-            'total_page': math.ceil((len(self.dataset()) / page_size))
-        }
+        """Returning dictionary with info about page
+        """
+        data = self.get_page(page=page, page_size=page_size)
+        total_len = len(self.dataset())
+        total_pages = math.ceil(total_len / page_size)
 
-        return pagination_dict
+        return {
+                "page_size": len(data),
+                "page": page,
+                "data": data,
+                "next_page": page + 1 if page < total_pages else None,
+                "prev_page": page - 1 if page > 1 else None,
+                "total_pages": total_pages
+            }
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
