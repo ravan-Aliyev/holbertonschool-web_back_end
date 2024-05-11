@@ -48,9 +48,9 @@ class Server:
         if index not in self.indexed_dataset().keys():
             next_index += 1
 
-        # print(data)
         return {
             'index': index,
             'data': data,
+            'page_size': page_size,
             'next_index': next_index
         }
