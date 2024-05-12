@@ -1,2 +1,5 @@
 __pycache__
 main.py
+node_modules
+main.js
+package*.json
