@@ -1,4 +1,4 @@
-/* eslint disable */
+/* eslint-disable */
 
 import { uploadPhoto, createUser } from "./utils";
 
