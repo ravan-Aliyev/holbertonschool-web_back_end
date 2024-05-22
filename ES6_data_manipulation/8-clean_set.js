@@ -1,11 +1,9 @@
 /* eslint-disable */
 
-export default function cleanSet(set, startString) {
+export default function cleanSet(set, startString = "") {
   const str = [];
 
-  if (
-    startString.length === 0
-  ) {
+  if (startString.length === 0) {
     return "";
   }
 
