@@ -10,7 +10,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
   ]).then((val) => {
     val.forEach((item) => ({
       status: item.status,
-      value: item.value,
+      value: item.status === "fulfilled" ? item.value : String(item.reason),
     }));
   });
 }
