@@ -3,3 +3,5 @@ main.py
 node_modules
 main.js
 package*.json
+.eslintrc.js
+babel.config.js
