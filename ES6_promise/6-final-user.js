@@ -8,7 +8,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
   ]).then((val) => {
-    val.forEach((item) => ({
+    val.map((item) => ({
       status: item.status,
       value: item.status === "fulfilled" ? item.value : String(item.reason),
     }));
