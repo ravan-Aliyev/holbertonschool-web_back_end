@@ -1,17 +1,19 @@
 /* eslint-disable */
 
 export default function cleanSet(set, startString) {
-  let word = "";
-  let i = 0;
-  for (let item of set) {
-    if (item[0] === startString[0] && item.startsWith(startString)) {
-      i++;
-      word += `${item.split(startString).join("")}`;
-      if (i < set.size - 1) {
-        word += "-";
-      }
+  const str = [];
+
+  if (
+    startString.length === 0
+  ) {
+    return "";
+  }
+
+  for (const item of set) {
+    if (item && item.startsWith(startString)) {
+      str.push(item.slice(startString.length));
     }
   }
 
-  return word;
+  return str.join("-");
 }
